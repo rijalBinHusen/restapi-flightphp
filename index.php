@@ -2,10 +2,23 @@
 
 require('vendor/autoload.php');
 require('controller/Greeting.php');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$greeting = new Greeting();
+
+Flight::route('GET /env', function() {
+    $appName = getenv('APP_ENV');
+    $database = getenv('DATABASE');
+    return Flight::json(array(
+        'app name' => $appName,
+        'database' => $database, 
+    ));
+});
+
+
 
 // greeting route
+$greeting = new Greeting();
 Flight::route('GET /greeting', array($greeting, 'hello'));
 // named parameter
 Flight::route('GET /greeting/@name/@id', array($greeting, 'hello2'));
