@@ -8,8 +8,12 @@ class Greeting
     public function hello() {
         echo "Hello, {$this->name}!";
     }
-    
+
     public function hello2($name, $id) {
-        echo "Hello, $name - $id!";
+        return Flight::json(array(
+            'id' => $id,
+            'name' => $name, 
+        ));
+        // echo "Hello, $name - $id!";
     }
 }
