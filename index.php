@@ -2,11 +2,11 @@
 
 require('vendor/autoload.php');
 require('controller/Greeting.php');
-require('model/dotenv.php');
+require('model/database.php');
 
+$database = new sqldatabase();
+Flight::route('GET /database', array($database, 'status'));
 
-$getEnv = new getEnv();
-Flight::route('GET /env', array($getEnv, 'result'));
 
 // greeting route
 $greeting = new Greeting();
