@@ -2,8 +2,14 @@
 
 require('vendor/autoload.php');
 require('controller/Greeting.php');
+// require('controller/Articles.php');
 require('model/database.php');
 
+// Articles
+// $articles = new Articles();
+// Flight::route('GET /articles', array($articles, 'getArticles'));
+
+// check the database connection status
 $database = new sqldatabase();
 Flight::route('GET /database', array($database, 'status'));
 
@@ -17,22 +23,21 @@ Flight::route('GET /greeting/@name/@id', array($greeting, 'hello2'));
 // greeting route
 
 // root route
-Flight::route('GET /', function(){
+Flight::route('GET /', function () {
     echo 'I received a GET request.';
 });
 
-Flight::route('POST /', function(){
+Flight::route('POST /', function () {
     echo 'I received a POST request.';
 });
 
-Flight::route('PUT /', function(){
+Flight::route('PUT /', function () {
     echo 'I received a PUT request.';
 });
 
-Flight::route('DELETE /', function(){
+Flight::route('DELETE /', function () {
     echo 'I received a DELETE request.';
 });
 // root route
 
 Flight::start();
-?>
