@@ -2,17 +2,17 @@
 
 require('vendor/autoload.php');
 require('controller/Greeting.php');
-// require('controller/Articles.php');
 require_once('model/database.php');
-require('controller/MyGuest.php');
+require_once('controller/Articles.php');
+// require('controller/MyGuest.php');
 
 // Myguests
-$guests = new MyGuest();
-Flight::route('GET /myguests', array($guests, 'getMyGuests'));
+// $guests = new MyGuest();
+// Flight::route('GET /myguests', array($guests, 'getMyGuests'));
 
 // Articles
-// $articles = new Articles();
-// Flight::route('GET /articles', array($articles, 'getArticles'));
+$articles = new Articles();
+Flight::route('GET /articles', array($articles, 'getArticles'));
 
 // check the database connection status
 $database = new sqldatabase();

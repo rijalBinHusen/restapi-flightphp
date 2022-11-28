@@ -1,5 +1,5 @@
 <?php
-require('./model/Articles.php');
+require_once(__DIR__ . '/../model/ArticlesModel.php');
 
 class Articles
 {
@@ -10,11 +10,6 @@ class Articles
     }
     public function getArticles()
     {
-        $result = $this->ArticlesModel->getArticles();
-
-        return Flight::json(array(
-            'status' => 'success',
-            'data' => $result,
-        ), 200);
+        return $this->ArticlesModel->getArticles();
     }
 }

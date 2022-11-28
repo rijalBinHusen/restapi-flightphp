@@ -1,7 +1,8 @@
 <?php
-require_once(__DIR__ .'/Database.php');
+require_once(__DIR__ . '/database.php');
 
-class MyGuestsModel {
+class MyGuestsModel
+{
     protected $database;
     var $table = "myguests";
     var $columns = "id, firstname, lastname, email";
@@ -19,14 +20,16 @@ class MyGuestsModel {
     //         echo $name;  
     //     }  
     // }
-    public function getMyGuests() {
+    public function getMyGuests()
+    {
         return Flight::json(array(
             'status' => 'success',
             'data' => $this->database->getData($this->columns, $this->table)
         ));
     }
-    public function writeGuest(string $firstname, string $lastname, string $email) {
-        $res = $this->database->writeData( $this->table, "( ". $this->columns. " )", "( ". $firstname. ", ". $lastname. ", ". $email);
+    public function writeGuest(string $firstname, string $lastname, string $email)
+    {
+        $res = $this->database->writeData($this->table, "( " . $this->columns . " )", "( " . $firstname . ", " . $lastname . ", " . $email);
         return $res;
     }
 }

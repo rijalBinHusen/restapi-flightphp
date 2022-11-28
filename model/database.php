@@ -1,10 +1,11 @@
 <?php
 // Call dotenv package
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__. '/..');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 // load dotenv package
 $dotenv->load();
 
-class sqldatabase {
+class sqldatabase
+{
     // variable for database connection
     public $conn;
     // variable for connection status
@@ -24,38 +25,40 @@ class sqldatabase {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // set value to connection status
             $this->connection_status = "Connected successfully";
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             // set value to connection status
             $this->connection_status = "Connection failed: " . $e->getMessage();
         }
     }
-    public function getData($column, $table) {
+    public function getData($column, $table)
+    {
         // the query
         $result = array();
         // $query = 'SELECT * from myguests';
-        $query = $this->conn->query('SELECT '. $column. ' from '. $table);
-        while($row = $query->fetch()) {
+        $query = $this->conn->query('SELECT ' . $column . ' from ' . $table);
+        while ($row = $query->fetch()) {
             array_push($result, (object)[
-                'id' => "$row[0]", 
-                'firstname' => "$row[1]", 
-                'lastname' => "$row[2]", 
-                'email' => "$row[3]"
+                'id' => "$row[0]",
+                'firstname' => "$row[1]",
+                'lastname' => "$row[2]",
+                // 'email' => "$row[3]"
             ]);
-          }
+        }
         return $result;
     }
-    public function writeData(string $table, string $columns, string $values) {
+    public function writeData(string $table, string $columns, string $values)
+    {
         try {
-            $sql = "INSERT INTO ". $table. $columns. " VALUES ". $values;
+            $sql = "INSERT INTO " . $table . $columns . " VALUES " . $values;
             // use exec() because no results are returned
             $this->conn->exec($sql);
             return "New record created successfully";
-          } catch(PDOException $e) {
+        } catch (PDOException $e) {
             return $sql . "<br>" . $e->getMessage();
-          }
-          
+        }
     }
-    public function status () {
+    public function status()
+    {
         // return value when the function called
         echo $this->connection_status;
     }
