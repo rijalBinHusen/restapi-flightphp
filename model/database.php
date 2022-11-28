@@ -29,6 +29,21 @@ class sqldatabase {
             $this->connection_status = "Connection failed: " . $e->getMessage();
         }
     }
+    public function getData() {
+        // the query
+        $result = array();
+        // $query = 'SELECT * from myguests';
+        $query = $this->conn->query('SELECT * from myguests');
+        while($row = $query->fetch()) {
+            array_push($result, (object)[
+                'id' => "$row[0]", 
+                'firstname' => "$row[1]", 
+                'lastname' => "$row[2]", 
+                'email' => "$row[3]"
+            ]);
+          }
+        return $result; 
+    }
     public function status () {
         // return value when the function called
         echo $this->connection_status;

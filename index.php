@@ -3,7 +3,12 @@
 require('vendor/autoload.php');
 require('controller/Greeting.php');
 // require('controller/Articles.php');
-require('model/database.php');
+require_once('model/database.php');
+require('controller/MyGuest.php');
+
+// Myguests
+$guests = new MyGuest();
+Flight::route('GET /myguests', array($guests, 'getMyGuests'));
 
 // Articles
 // $articles = new Articles();
