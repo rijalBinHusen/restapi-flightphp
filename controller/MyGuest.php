@@ -1,8 +1,8 @@
 <?php
-require_once(__DIR__ .'/../model/Database.php');
+require_once(__DIR__ .'/../model/MyGuestModel.php');
 
 class MyGuest {
-    protected $database;
+    protected $MyGuestsModel;
     // public function validator ($firstname, $lastname, $email) {
     //     $name = $_POST ["Name"];
     //     $name_reg = "/^[a-zA-z]*$/";
@@ -15,12 +15,9 @@ class MyGuest {
     // }
     function __construct()
     {
-        $this->database = new sqldatabase();
+        $this->MyGuestsModel = new MyGuestsModel();
     }
     public function getMyGuests() {
-        return Flight::json(array(
-            $this->database->getData()
-        ));
-        // echo $this->database->getData();
+        return $this->MyGuestsModel->getMyGuests();
     }
 }

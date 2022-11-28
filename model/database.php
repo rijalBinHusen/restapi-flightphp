@@ -29,11 +29,11 @@ class sqldatabase {
             $this->connection_status = "Connection failed: " . $e->getMessage();
         }
     }
-    public function getData() {
+    public function getData($column, $table) {
         // the query
         $result = array();
         // $query = 'SELECT * from myguests';
-        $query = $this->conn->query('SELECT * from myguests');
+        $query = $this->conn->query('SELECT '. $column. ' from '. $table);
         while($row = $query->fetch()) {
             array_push($result, (object)[
                 'id' => "$row[0]", 
@@ -42,10 +42,25 @@ class sqldatabase {
                 'email' => "$row[3]"
             ]);
           }
-        return $result; 
+        return $result;
+    }
+    public function writeData(string $table, string $columns, string $values) {
+        try {
+            $sql = "INSERT INTO ". $table. $columns. " VALUES ". $values;
+            // use exec() because no results are returned
+            $this->conn->exec($sql);
+            return "New record created successfully";
+          } catch(PDOException $e) {
+            return $sql . "<br>" . $e->getMessage();
+          }
+          
     }
     public function status () {
         // return value when the function called
         echo $this->connection_status;
+    }
+    function __destruct()
+    {
+        $this->conn  = null;
     }
 }
