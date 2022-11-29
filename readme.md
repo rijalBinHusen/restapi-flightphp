@@ -27,10 +27,12 @@ Flight micro framework website [Official](https://flightphp.com/)
 - [ ] Find a way to avoid directory listing
 
 ## What i learn from this project:
+
 - Enable php for apache2
-  When i run my machine, the browser can not render file that contain phpinfo()
+  When i run my ubuntu machine, the browser can't render file that contain phpinfo()
   So, i install the package that enable php for apache2:
   `sudo apt install libapache2-mod-php`
+
 - Enabling web server to override the configuration by using .htaccess file
   1. Edit the apache2 conf
     `sudo nano /etc/apache2/apache2.conf`
@@ -44,7 +46,27 @@ Flight micro framework website [Official](https://flightphp.com/)
     ```
   2. Enable rewrite modul `sudo a2enmod rewrite` 
   3. Restart the apache `sudo service apache2 restart`
+   
 - Enabling cors for all origin by adding this script to .htaccess file
+  ```
+  Header add Access-Control-Allow-Origin "*"
+  Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+  ```
+
+- Enabling cors in ubuntu machine
+  1. Edit the apache2 conf `sudo nano /etc/apache2/apache2.conf`
+    Add script `Header set Access-Control-Allow-Origin "*"` like bellow:
+    ```
+    <Directory /var/www/>
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+            Header set Access-Control-Allow-Origin "*"
+    </Directory>
+    ```
+  2. Enable headers module `sudo a2enmod headers`
+  3. Restart apache2 `sudo service apache2 restart`
+  4. Add script to the .htaccess file
   ```
   Header add Access-Control-Allow-Origin "*"
   Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
