@@ -5,8 +5,8 @@ Flight micro framework website [Official](https://flightphp.com/)
 ## Todo:
 - [x] Find How to using .env file in this framework
 - [x] Connect to database using .env parameter
-- [ ] Create data to database using post method
-- [ ] Show data from database using get method
+- [x] Create data to database using post method
+- [x] Show data from database using get method
 - [ ] Show data from database by 1 parameter
 - [ ] show data from database by more 1 parameter
 - [ ] Update data in database using put method
@@ -29,7 +29,10 @@ Flight micro framework website [Official](https://flightphp.com/)
             Require all granted
     </Directory>
     ```
-  2. Enable rewrite modul
-    `sudo a2enmod rewrite` 
-  3. Restart the apache
-    `sudo service apache2 restart`
+  2. Enable rewrite modul `sudo a2enmod rewrite` 
+  3. Restart the apache `sudo service apache2 restart`
+- Enabling cors for all origin by adding this script to .htaccess file
+  ```
+  Header add Access-Control-Allow-Origin "*"
+  Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+  ```
