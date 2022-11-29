@@ -9,7 +9,7 @@ require_once('controller/MyGuest.php');
 // Myguests
 $guests = new MyGuest();
 Flight::route('GET /myguests', array($guests, 'getMyGuests'));
-
+Flight::route('POST /myguests', array($guests, 'addMyGuests'));
 // Articles
 $articles = new Articles();
 Flight::route('GET /articles', array($articles, 'getArticles'));
@@ -33,7 +33,8 @@ Flight::route('GET /', function () {
 });
 
 Flight::route('POST /', function () {
-    echo 'I received a POST request.';
+    $req = Flight::request()->query->name;
+    echo 'I received a POST request '. $req;
 });
 
 Flight::route('PUT /', function () {

@@ -50,10 +50,10 @@ class sqldatabase
         }
         return $result;
     }
-    public function writeData(string $table, string $columns, string $values)
+    public function writeData($table, $columns, $values)
     {
         try {
-            $sql = "INSERT INTO " . $table . $columns . " VALUES " . $values;
+            $sql = "INSERT INTO " . $table . $columns . " VALUES " . $values ." )";
             // use exec() because no results are returned
             $this->conn->exec($sql);
             return "New record created successfully";

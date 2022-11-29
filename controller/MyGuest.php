@@ -20,4 +20,11 @@ class MyGuest {
     public function getMyGuests() {
         return $this->MyGuestsModel->getMyGuests();
     }
+    public function addMyGuests() {
+        $req = Flight::request();
+        $firstname = $req->query->firstname;
+        $lastname = $req->query->lastname;
+        $email = $req->query->email;
+        return $this->MyGuestsModel->writeGuest($firstname, $lastname, $email);
+    }
 }

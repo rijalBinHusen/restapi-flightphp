@@ -27,9 +27,11 @@ class MyGuestsModel
             'data' => $this->database->getData($this->columns, $this->table)
         ));
     }
-    public function writeGuest(string $firstname, string $lastname, string $email)
+    public function writeGuest($firstname, $lastname, $email)
     {
-        $res = $this->database->writeData($this->table, "( " . $this->columns . " )", "( " . $firstname . ", " . $lastname . ", " . $email);
-        return $res;
+        $res = $this->database->writeData($this->table, "( firstname, lastname, email )", "( '" . $firstname . "', '" . $lastname . "', '" . $email. "'");
+        return Flight::json(array(
+            'status' => $res
+        ));
     }
 }
