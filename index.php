@@ -1,14 +1,14 @@
 <?php
 
-require('vendor/autoload.php');
-require('controller/Greeting.php');
+require_once('vendor/autoload.php');
+require_once('controller/Greeting.php');
 require_once('model/database.php');
 require_once('controller/Articles.php');
-// require('controller/MyGuest.php');
+require_once('controller/MyGuest.php');
 
 // Myguests
-// $guests = new MyGuest();
-// Flight::route('GET /myguests', array($guests, 'getMyGuests'));
+$guests = new MyGuest();
+Flight::route('GET /myguests', array($guests, 'getMyGuests'));
 
 // Articles
 $articles = new Articles();

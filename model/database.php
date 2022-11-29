@@ -30,19 +30,23 @@ class sqldatabase
             $this->connection_status = "Connection failed: " . $e->getMessage();
         }
     }
-    public function getData($column, $table)
+    public function getData($columns, $table)
     {
         // the query
         $result = array();
+        // we are gonna split string as array, so we can loop it bruh
+        $arrOfColumns = explode(", ", $columns);
         // $query = 'SELECT * from myguests';
-        $query = $this->conn->query('SELECT ' . $column . ' from ' . $table);
+        $query = $this->conn->query('SELECT ' . $columns . ' from ' . $table);
         while ($row = $query->fetch()) {
-            array_push($result, (object)[
-                'id' => "$row[0]",
-                'firstname' => "$row[1]",
-                'lastname' => "$row[2]",
-                // 'email' => "$row[3]"
-            ]);
+            $tempResult = array();
+            // iterate the columns
+            foreach ($arrOfColumns as $column) {
+                // tempResult { tempResult: row }
+                $tempResult[$column] = $row[$column];
+            }
+            // push to result
+            array_push($result, $tempResult);
         }
         return $result;
     }
