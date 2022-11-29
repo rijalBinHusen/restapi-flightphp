@@ -2,6 +2,19 @@
 
 Flight micro framework website [Official](https://flightphp.com/)
 
+## The REST API spec :
+
+| Methods  | Urls | Actions | Status |
+| ------------- | ------------- | ------------- | ------------- | 
+| GET | api/myguests | get all 20 guests | [x] |
+| GET | api/myguests/:id | get guest by id | [ ] |
+| POST | api/myguests | add new guest | [x] |
+| PUT | api/myguests/:id | update guest by id | [ ] |
+| DELETE | api/myguests/:id | remove guest by id | [x] |
+| DELETE | api/myguests | remove all guests | [ ] |
+| GET | api/myguests/published | find all published guests | [ ] |
+<!-- | GET | api/myguests?title=[kw] | find all myguests which title contains 'kw' | -->
+
 ## Todo:
 - [x] Find How to using .env file in this framework
 - [x] Connect to database using .env parameter
@@ -10,7 +23,7 @@ Flight micro framework website [Official](https://flightphp.com/)
 - [ ] Show data from database by 1 parameter
 - [ ] show data from database by more 1 parameter
 - [ ] Update data in database using put method
-- [ ] Delete data from database using delete method
+- [x] Delete data from database using delete method
 - [ ] Find a way to avoid directory listing
 
 ## What i learn from this project:

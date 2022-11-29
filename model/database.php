@@ -30,14 +30,15 @@ class sqldatabase
             $this->connection_status = "Connection failed: " . $e->getMessage();
         }
     }
-    public function getData($columns, $table)
+    public function getData($columns, $table, $totalRow = 10)
     {
-        // the query
+        // initiate array
         $result = array();
         // we are gonna split string as array, so we can loop it bruh
         $arrOfColumns = explode(", ", $columns);
-        // $query = 'SELECT * from myguests';
-        $query = $this->conn->query('SELECT ' . $columns . ' from ' . $table);
+        // the query
+        $query = 'SELECT ' . $columns . ' from ' . $table. ' LIMIT '. $totalRow;
+        $query = $this->conn->query($query);
         while ($row = $query->fetch()) {
             $tempResult = array();
             // iterate the columns
@@ -60,6 +61,19 @@ class sqldatabase
         } catch (PDOException $e) {
             return $sql . "<br>" . $e->getMessage();
         }
+    }
+    public function deleteData ($table, $column, $criteria) {
+        try {
+            // sql to delete a record
+            $sql = "DELETE FROM ". $table. " WHERE ". $column. "=". $criteria;
+          
+            // use exec() because no results are returned
+            $this->conn->exec($sql);
+            return "Record deleted successfully";
+          } catch(PDOException $e) {
+            return $sql . "<br>" . $e->getMessage();
+          }
+          
     }
     public function status()
     {

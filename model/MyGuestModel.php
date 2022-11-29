@@ -34,4 +34,10 @@ class MyGuestsModel
             'status' => $res
         ));
     }
+    public function deleteGuest($id) {
+        $res = $this->database->deleteData($this->table, 'id', $id);
+        return Flight::json(array(
+            'status' => $res
+        ));
+    }
 }

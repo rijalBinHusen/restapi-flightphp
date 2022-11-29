@@ -20,11 +20,16 @@ class MyGuest {
     public function getMyGuests() {
         return $this->MyGuestsModel->getMyGuests();
     }
-    public function addMyGuests() {
+    public function addMyGuest() {
         $req = Flight::request();
         $firstname = $req->query->firstname;
         $lastname = $req->query->lastname;
         $email = $req->query->email;
         return $this->MyGuestsModel->writeGuest($firstname, $lastname, $email);
+    }
+    public function deleteGuest($id) {
+        // myguest/8
+        // the 8 will automatically becoming parameter $id
+        return $this->MyGuestsModel->deleteGuest($id);
     }
 }
