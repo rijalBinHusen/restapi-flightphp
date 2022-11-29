@@ -7,12 +7,12 @@ Flight micro framework website [Official](https://flightphp.com/)
 | Methods  | Urls | Actions | Status |
 | ------------- | ------------- | ------------- | ------------- | 
 | GET | api/myguests | get all 20 guests | [x] |
-| GET | api/myguests/:id | get guest by id | [ ] |
+| GET | api/myguests/:id | get guest by id | [x] |
 | POST | api/myguests | add new guest | [x] |
 | PUT | api/myguests/:id | update guest by id | [ ] |
 | DELETE | api/myguests/:id | remove guest by id | [x] |
-| DELETE | api/myguests | remove all guests | [ ] |
-| GET | api/myguests/published | find all published guests | [ ] |
+<!-- | DELETE | api/myguests | remove all guests | [ ] | -->
+<!-- | GET | api/myguests/published | find all published guests | [ ] | -->
 <!-- | GET | api/myguests?title=[kw] | find all myguests which title contains 'kw' | -->
 
 ## Todo:
@@ -20,7 +20,7 @@ Flight micro framework website [Official](https://flightphp.com/)
 - [x] Connect to database using .env parameter
 - [x] Create data to database using post method
 - [x] Show data from database using get method
-- [ ] Show data from database by 1 parameter
+- [x] Show data from database by 1 parameter
 - [ ] show data from database by more 1 parameter
 - [ ] Update data in database using put method
 - [x] Delete data from database using delete method

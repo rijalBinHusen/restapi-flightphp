@@ -27,6 +27,11 @@ class MyGuest {
         $email = $req->query->email;
         return $this->MyGuestsModel->writeGuest($firstname, $lastname, $email);
     }
+    public function getGuestById($id) {
+        // myguest/8
+        // the 8 will automatically becoming parameter $id
+        return $this->MyGuestsModel->getGuestById($id);
+    }
     public function deleteGuest($id) {
         // myguest/8
         // the 8 will automatically becoming parameter $id

@@ -30,27 +30,6 @@ class sqldatabase
             $this->connection_status = "Connection failed: " . $e->getMessage();
         }
     }
-    public function getData($columns, $table, $totalRow = 10)
-    {
-        // initiate array
-        $result = array();
-        // we are gonna split string as array, so we can loop it bruh
-        $arrOfColumns = explode(", ", $columns);
-        // the query
-        $query = 'SELECT ' . $columns . ' from ' . $table. ' LIMIT '. $totalRow;
-        $query = $this->conn->query($query);
-        while ($row = $query->fetch()) {
-            $tempResult = array();
-            // iterate the columns
-            foreach ($arrOfColumns as $column) {
-                // tempResult { tempResult: row }
-                $tempResult[$column] = $row[$column];
-            }
-            // push to result
-            array_push($result, $tempResult);
-        }
-        return $result;
-    }
     public function writeData($table, $columns, $values)
     {
         try {
@@ -74,6 +53,54 @@ class sqldatabase
             return $sql . "<br>" . $e->getMessage();
           }
           
+    }
+    public function findDataByColumnCriteria ($table, $allColumns, $columnToSearch, $criteria) {
+        // initiate array
+        $result = array();
+        // we are gonna split string as array, so we can loop it bruh
+        $arrOfColumns = explode(", ", $allColumns);
+        try {
+            $stmt = $this->conn->prepare("SELECT id, firstname, lastname FROM MyGuests WHERE lastname='Doe'");
+            $stmt->execute();
+            $query = 'SELECT ' . $allColumns . ' from ' . $table. ' WHERE '. $columnToSearch. "=". $criteria;
+            $query = $this->conn->query($query);
+            // set the resulting array to associative
+            while ($row = $query->fetch()) {
+                $tempResult = array();
+                // iterate the columns
+                foreach ($arrOfColumns as $column) {
+                    // tempResult { tempResult: row }
+                    $tempResult[$column] = $row[$column];
+                }
+                // push to result
+                array_push($result, $tempResult);
+            }
+            return $result;
+          }
+          catch(PDOException $e) {
+            return "Error: " . $e->getMessage();
+          }
+    }
+    public function getData($columns, $table, $totalRow = 10)
+    {
+        // initiate array
+        $result = array();
+        // we are gonna split string as array, so we can loop it bruh
+        $arrOfColumns = explode(", ", $columns);
+        // the query
+        $query = 'SELECT ' . $columns . ' from ' . $table. ' LIMIT '. $totalRow;
+        $query = $this->conn->query($query);
+        while ($row = $query->fetch()) {
+            $tempResult = array();
+            // iterate the columns
+            foreach ($arrOfColumns as $column) {
+                // tempResult { tempResult: row }
+                $tempResult[$column] = $row[$column];
+            }
+            // push to result
+            array_push($result, $tempResult);
+        }
+        return $result;
     }
     public function status()
     {
