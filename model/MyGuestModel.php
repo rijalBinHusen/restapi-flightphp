@@ -44,4 +44,10 @@ class MyGuestsModel
             'status' => $this->database->findDataByColumnCriteria($this->table, $this->columns, 'id', $id)
         ));
     }
+    public function updateGuestById($keyValueToUpdate, $id) {
+        $res = $this->database->updateDataByCriteria($this->table, $keyValueToUpdate, 'id', $id);
+        return Flight::json(array(
+            'status' => $res
+        ));
+    }
 }

@@ -37,4 +37,29 @@ class MyGuest {
         // the 8 will automatically becoming parameter $id
         return $this->MyGuestsModel->deleteGuest($id);
     }
+    public function updateGuestById($id) {
+        // catch the query string request
+        $req = Flight::request();
+        $firstname = $req->query->firstname;
+        $lastname = $req->query->lastname;
+        $email = $req->query->email;
+        // initiate the column and values to update
+        $keyValueToUpdate = null;
+        // conditional firstname
+        if($firstname) {
+            $keyValueToUpdate = is_null($keyValueToUpdate) ? "firstname='$firstname'" : "$keyValueToUpdate firstname='$firstname'";
+        } 
+
+        // conditional lastname
+        if($lastname) {
+            $keyValueToUpdate = is_null($keyValueToUpdate) ? "lastname='$lastname'" : "$keyValueToUpdate lastname='$lastname'";
+        } 
+
+        // conditional email
+        if($email) {
+            $keyValueToUpdate = is_null($keyValueToUpdate) ? "email='$email'" : "$keyValueToUpdate email='$email'";
+        } 
+        // send to myguest model
+        $this->MyGuestsModel->updateGuestById($keyValueToUpdate, $id);
+    }
 }

@@ -102,6 +102,18 @@ class sqldatabase
         }
         return $result;
     }
+    public function updateDataByCriteria($table, $keyValueToUpdate, $columnCriteria, $criteria) {
+        $sql = "UPDATE ". $table. " SET ". $keyValueToUpdate. " WHERE ". $columnCriteria. "=". $criteria;
+        //// Prepare statement
+        $stmt = $this->conn->prepare($sql);
+
+        // execute the query
+        $stmt->execute();
+
+        // echo a message to say the UPDATE succeeded
+        return $stmt->rowCount() . " records UPDATED successfully";
+        // return $sql;
+    }
     public function status()
     {
         // return value when the function called

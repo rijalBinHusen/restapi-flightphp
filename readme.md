@@ -9,7 +9,7 @@ Flight micro framework website [Official](https://flightphp.com/)
 | GET | api/myguests | get all 20 guests | [x] |
 | GET | api/myguests/:id | get guest by id | [x] |
 | POST | api/myguests | add new guest | [x] |
-| PUT | api/myguests/:id | update guest by id | [ ] |
+| PUT | api/myguests/:id | update guest by id | [x] |
 | DELETE | api/myguests/:id | remove guest by id | [x] |
 <!-- | DELETE | api/myguests | remove all guests | [ ] | -->
 <!-- | GET | api/myguests/published | find all published guests | [ ] | -->
@@ -22,7 +22,7 @@ Flight micro framework website [Official](https://flightphp.com/)
 - [x] Show data from database using get method
 - [x] Show data from database by 1 parameter
 - [ ] show data from database by more 1 parameter
-- [ ] Update data in database using put method
+- [x] Update data by id in database using put method
 - [x] Delete data from database using delete method
 - [ ] Find a way to avoid directory listing
 

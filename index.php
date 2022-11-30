@@ -12,6 +12,7 @@ Flight::route('GET /myguests', array($guests, 'getMyGuests'));
 Flight::route('POST /myguests', array($guests, 'addMyGuest'));
 Flight::route('DELETE /myguests/@id', array($guests, 'deleteGuest'));
 Flight::route('GET /myguests/@id', array($guests, 'getGuestById'));
+Flight::route('PUT /myguests/@id', array($guests, 'updateGuestById'));
 
 // Articles
 $articles = new Articles();
