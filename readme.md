@@ -24,7 +24,7 @@ Flight micro framework website [Official](https://flightphp.com/)
 - [ ] show data from database by more 1 parameter
 - [x] Update data by id in database using put method
 - [x] Delete data from database using delete method
-- [ ] Find a way to avoid directory listing
+- [x] Find a way to avoid directory listing
 
 ## What i learn from this project:
 
@@ -70,4 +70,13 @@ Flight micro framework website [Official](https://flightphp.com/)
   ```
   Header add Access-Control-Allow-Origin "*"
   Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+  ```
+
+- Avoid directory listing by adding script `Options -Indexes` to .htaccess file
+- Prevent public to access to `.env` file by adding this script to .htaccess file:
+  ```
+  <Files .env>
+      Order allow,deny
+      Deny from all
+  </Files>
   ```

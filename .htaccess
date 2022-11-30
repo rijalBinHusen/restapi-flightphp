@@ -4,3 +4,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 Header add Access-Control-Allow-Origin "*"
 Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+Options -Indexes 
+
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
